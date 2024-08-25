@@ -1,4 +1,4 @@
-# My Paylink Package
+# Paylink Package
 
 A Python package for interacting with the Paylink API. It provides functionality to add and retrieve invoices.
 

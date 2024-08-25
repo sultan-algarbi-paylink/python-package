@@ -2,7 +2,7 @@ import requests
 from typing import List, Optional, Dict, Any
 
 # Paylink
-from paylink_product import PaylinkProduct
+from .paylink_product import PaylinkProduct
 
 class Paylink:
     def __init__(self, env: str = 'production', api_id: str = None, secret_key: str = None):
