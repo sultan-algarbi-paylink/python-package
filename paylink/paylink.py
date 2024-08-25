@@ -3,15 +3,14 @@ from typing import List, Optional, Dict, Any
 
 # Paylink
 from paylink_product import PaylinkProduct
-import config;
 
 class Paylink:
-    def __init__(self, env: str = 'production'):
+    def __init__(self, env: str = 'production', api_id: str = None, secret_key: str = None):
         if env == 'production':
             self.api_link = 'https://restapi.paylink.sa'
             self.payment_page_prefix = 'https://payment.paylink.sa/pay/order'
-            self.api_id = config.PAYLINK_API_ID
-            self.secret_key = config.PAYLINK_SECRET_KEY
+            self.api_id = api_id
+            self.secret_key = secret_key
             self.persist_token = False
         else: # development & test
             self.api_link = 'https://restpilot.paylink.sa'
@@ -19,6 +18,9 @@ class Paylink:
             self.api_id = 'APP_ID_1123453311' # Test App ID
             self.secret_key = '0662abb5-13c7-38ab-cd12-236e58f43766' # Test Secret Key
             self.persist_token = False
+        
+        if not self.api_id or not self.secret_key:
+            raise ValueError("Paylink API ID and Secret Key must be provided for production environment.")
 
         self.id_token = None
 
