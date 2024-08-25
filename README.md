@@ -7,7 +7,7 @@ A Python package for interacting with the Paylink API. It provides functionality
 You can install the package using pip:
 
 ```bash
-pip install paylink
+pip install paylink-package==1.0.3
 ```
 
 ## Usage

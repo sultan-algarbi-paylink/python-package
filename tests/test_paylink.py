@@ -1,5 +1,5 @@
 import pytest
-from paylink.paylink import Paylink, PaylinkProduct
+from paylink import Paylink, PaylinkProduct
 
 def test_add_invoice():
     paylink = Paylink(env='dev') # api_id & secret_key are required for production environment
