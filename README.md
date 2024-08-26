@@ -7,16 +7,21 @@ A Python package for interacting with the Paylink API. It provides functionality
 You can install the package using pip:
 
 ```bash
-pip install paylink-package==1.0.3
+pip install paylink-package==1.0.4
 ```
 
 ## Usage
+
 ```python
 from paylink import Paylink, PaylinkProduct
 ```
 
 ```python
-paylink = Paylink(env='production')
+# For Development & Test
+paylink = Paylink.test()
+
+# For Production
+paylink = Paylink.production(api_id='xxxxx', secret_key='xxxxx')
 ```
 
 ```python
@@ -36,15 +41,23 @@ invoice_details = paylink.add_invoice(
 )
 
 print(invoice_details)
-print('Transaction No:', invoiceDetails['transactionNo'])
-print('Payment Url:', invoiceDetails['url'])
+print('Transaction No:', invoice_details.transaction_no)
+print('Payment Url:', invoice_details.url)
 ```
 
 ```python
 # Get Invoice
 
-invoice_details = paylink.get_invoice(invoice_details['transactionNo'])
+invoice_details = paylink.get_invoice(transaction_no=17214351564123)
 
-print('Payment Status:', invoice_details['orderStatus'])
+print('Payment Status:', invoice_details.order_status)
+print('Payment Url:', invoice_details.url)
 ```
 
+```python
+# Payment Status
+
+status = paylink.order_status(transaction_no=17214351564123)
+print('Payment Status:', status)
+
+```
