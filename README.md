@@ -1,13 +1,13 @@
 # Paylink Package
 
-A Python package for interacting with the Paylink API. It provides functionality to add and retrieve invoices.
+This package is ideal for Python developers looking to integrate Paylink's payment processing capabilities into their applications with minimal effort. It provides functionality to add and retrieve invoices.
 
 ## Installation
 
 You can install the package using pip:
 
 ```bash
-pip install paylink-package==1.0.4
+pip install paylink-package==1.0.5
 ```
 
 ## Usage
@@ -61,3 +61,54 @@ status = paylink.order_status(transaction_no=17214351564123)
 print('Payment Status:', status)
 
 ```
+
+## Package Features:
+
+The Paylink Python package provides a comprehensive integration with the Paylink Payment Gateway, enabling developers to create, manage, and track payment invoices easily. Key features include:
+
+1. **Environment Configuration**:
+
+   - Supports both **production** and **test** environments.
+   - Easy setup with API credentials for authentication.
+
+2. **Authentication**:
+
+   - Secure authentication to obtain an ID token required for API interactions.
+
+3. **Invoice Management**:
+
+   - **Create Invoice**: Generate new invoices with detailed product information, client details, and callback URLs.
+   - **Retrieve Invoice**: Fetch invoice details using the transaction number.
+   - **Order Status**: Retrieve the status of an order by its transaction number.
+
+4. **Product Management**:
+
+   - **PaylinkProduct Class**: Create product objects with attributes like title, price, quantity, description, VAT, and digital product options.
+   - Convert product data to and from dictionary format for easy serialization and deserialization.
+
+5. **Comprehensive Response Handling**:
+
+   - **PaylinkInvoiceResponse Class**: Parse and manage responses from the Paylink API, including transaction details, order status, payment errors, and more.
+
+6. **Error Handling**:
+
+   - Robust error handling with meaningful exception messages for authentication, invoice creation, and data retrieval processes.
+
+7. **Ease of Use**:
+   - Designed with Python developers in mind, offering clear methods for interacting with the Paylink API.
+   - Helper methods for initializing the package in different environments (`test` and `production`).
+
+## Changelog
+
+- **1.0.5**
+
+  - **Updated README File:** Added detailed information about package features to provide users with a comprehensive overview of capabilities and functionalities.
+  - **Enhanced Changelog:** Included a changelog section in the README file to keep users informed about updates and changes in each version.
+
+- **1.0.4**
+  - **PaylinkProduct Class:**
+    - Developed a `PaylinkProduct` class to create and manage product objects with attributes such as title, price, quantity, description, VAT, and options for digital products.
+    - Implemented methods for converting product data to and from dictionary format, facilitating easy serialization and deserialization for various use cases.
+  - **PaylinkInvoiceResponse Class:**
+    - Introduced the `PaylinkInvoiceResponse` class to parse and handle responses from the Paylink API. This includes managing transaction details, order status, payment errors, and other relevant information.
+  - **Order Status Retrieval:** Added functionality to retrieve the status of an order using its transaction number, allowing for effective tracking and management of orders.
