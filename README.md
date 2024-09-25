@@ -7,7 +7,7 @@ This package is ideal for Python developers looking to integrate Paylink's payme
 You can install the package using pip:
 
 ```bash
-pip install paylink-package==1.0.5
+pip install paylink-package==1.0.6
 ```
 
 ## Usage
@@ -55,6 +55,13 @@ print('Payment Url:', invoice_details.url)
 ```
 
 ```python
+# Cancel Invoice
+
+cancellation_success = paylink.cancel_invoice(transaction_no=17214351564123) # true-false
+
+```
+
+```python
 # Payment Status
 
 status = paylink.order_status(transaction_no=17214351564123)
@@ -99,6 +106,10 @@ The Paylink Python package provides a comprehensive integration with the Paylink
    - Helper methods for initializing the package in different environments (`test` and `production`).
 
 ## Changelog
+
+- **1.0.6**
+
+  - **New Method Added:** `cancel_invoice` to cancel an existing invoice using the Paylink API.
 
 - **1.0.5**
 

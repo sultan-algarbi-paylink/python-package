@@ -225,6 +225,51 @@ class Paylink:
         except requests.exceptions.RequestException as e:
             raise RuntimeError(f"Invoice retrieval failed: {e}")
 
+    def cancel_invoice(self, transaction_no: str) -> bool:
+        """
+        Cancel an existing invoice using the Paylink API.
+
+        Args:
+            transaction_no (str): The transaction number of the invoice to be canceled.
+
+        Returns:
+            bool: True if the cancellation is successful, False otherwise.
+
+        Raises:
+            RuntimeError: If invoice cancellation fails or the response is invalid.
+        """
+        if not self.id_token:
+            self._authenticate()
+
+        try:
+            # Prepare the request body for invoice cancellation
+            cancel_payload = {
+                "transactionNo": transaction_no,
+            }
+
+            # Send the cancellation request
+            response = requests.post(
+                f"{self.api_base_url}/api/cancelInvoice",
+                json=cancel_payload,
+                headers={
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {self.id_token}",
+                },
+            )
+
+            # Raise an exception for HTTP errors
+            response.raise_for_status()
+
+            # Parse the response data
+            response_data = response.json()
+
+            # Return success status
+            return response_data.get("success", "false").lower() == "true"
+
+        except requests.exceptions.RequestException as e:
+            raise RuntimeError(f"Invoice cancellation failed: {e}")
+
     def order_status(self, transaction_no: str) -> str:
         """
         Get the status of an order by its transaction number.
